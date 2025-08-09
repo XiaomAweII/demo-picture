@@ -1,10 +1,13 @@
 package com.maxiaowei.mypicturebackend.exception;
 
+import lombok.Getter;
+
 /**
  * 自定义异常
  * <p>
  * 作者: maxiaowei
  */
+@Getter
 public class BusinessException extends RuntimeException {
     /**
      * 错误码
