@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maxiaowei.mypicturebackend.demos.web;
+package com.maxiaowei.mypicturebackend.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

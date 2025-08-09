@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maxiaowei.mypicturebackend.demos.web;
+package com.maxiaowei.mypicturebackend.controller;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
