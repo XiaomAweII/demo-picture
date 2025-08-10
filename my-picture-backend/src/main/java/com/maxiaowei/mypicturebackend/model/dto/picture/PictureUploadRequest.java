@@ -1,5 +1,7 @@
 package com.maxiaowei.mypicturebackend.model.dto.picture;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * <p>
  * 作者: maxiaowei
  */
+@Data
 public class PictureUploadRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
