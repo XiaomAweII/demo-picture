@@ -9,10 +9,7 @@ import com.maxiaowei.mypicturebackend.model.dto.user.UserRegisterRequest;
 import com.maxiaowei.mypicturebackend.model.entity.User;
 import com.maxiaowei.mypicturebackend.model.vo.LoginUserVO;
 import com.maxiaowei.mypicturebackend.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -59,5 +56,17 @@ public class UserController {
         String userPassword = userLoginRequest.getUserPassword();
         LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
         return ResultUtils.success(loginUserVO);
+    }
+
+    /**
+     * 获取当前登录用户接口
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/get/login")
+    public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
+        User loginUser = userService.getLoginUser(request);
+        return ResultUtils.success(userService.getLoginUserVO(loginUser));
     }
 }
