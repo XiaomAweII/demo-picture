@@ -35,4 +35,14 @@ public class CosManager {
         return cosClient.putObject(putObjectRequest);
     }
 
+
+    /**
+     * 下载对象
+     *
+     * @param key 唯一键
+     */
+    public COSObject getObject(String key) {
+        GetObjectRequest getObjectRequest = new GetObjectRequest(cosClientConfig.getBucket(), key);
+        return cosClient.getObject(getObjectRequest);
+    }
 }
