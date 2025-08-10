@@ -1,10 +1,14 @@
 package com.maxiaowei.mypicturebackend.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.maxiaowei.mypicturebackend.model.dto.user.UserQueryRequest;
 import com.maxiaowei.mypicturebackend.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.maxiaowei.mypicturebackend.model.vo.LoginUserVO;
+import com.maxiaowei.mypicturebackend.model.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -47,6 +51,31 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean userLogout(HttpServletRequest request);
+
+    /**
+     * 获取脱敏后单个用户信息
+     *
+     * @param user
+     * @return
+     */
+    UserVO getUserVO(User user);
+
+    /**
+     * 获取脱敏后的用户列表
+     *
+     * @param userList
+     * @return
+     */
+    List<UserVO> getUserVOList(List<User> userList);
+
+
+    /**
+     * 用户传入的参数؜来构造 SQL 查询
+     *
+     * @param userQueryRequest
+     * @return
+     */
+    QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 
     /**
      * 获取加密后的密码
