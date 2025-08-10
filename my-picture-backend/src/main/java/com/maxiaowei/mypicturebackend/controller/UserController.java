@@ -4,8 +4,10 @@ import com.maxiaowei.mypicturebackend.common.BaseResponse;
 import com.maxiaowei.mypicturebackend.common.ResultUtils;
 import com.maxiaowei.mypicturebackend.exception.ErrorCode;
 import com.maxiaowei.mypicturebackend.exception.ThrowUtils;
+import com.maxiaowei.mypicturebackend.model.dto.user.UserLoginRequest;
 import com.maxiaowei.mypicturebackend.model.dto.user.UserRegisterRequest;
 import com.maxiaowei.mypicturebackend.model.entity.User;
+import com.maxiaowei.mypicturebackend.model.vo.LoginUserVO;
 import com.maxiaowei.mypicturebackend.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 功能描述:
@@ -39,5 +43,21 @@ public class UserController {
         String checkPassword = request.getCheckPassword();
         long result = userService.userRegister(userAccount, userPassword, checkPassword);
         return ResultUtils.success(result);
+    }
+
+    /**
+     * 用户登录
+     *
+     * @param userLoginRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/login")
+    public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+        ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
+        String userAccount = userLoginRequest.getUserAccount();
+        String userPassword = userLoginRequest.getUserPassword();
+        LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
+        return ResultUtils.success(loginUserVO);
     }
 }
